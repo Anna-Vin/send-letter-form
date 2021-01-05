@@ -1,0 +1,27 @@
+.header {
+  padding: 60px 0 20px 0;
+  .logo {
+    .circle {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      background: #c4c4c4;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .rectangle {
+      display: inline-block;
+      width: 30px;
+      height: 60px;
+      background: #c4c4c4;
+      margin-right: 10px;
+
+      &_angle {
+        // width: 60px;
+        transform: skew(-26.6deg, 0deg);
+        margin-left: 5px;
+      }
+    }
+  }
+}

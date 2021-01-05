@@ -1,0 +1,52 @@
+.form {
+  position: relative;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background: white;
+  padding: 30px;
+
+  h1 {
+    font-size: 30px;
+  }
+
+
+  label {
+    display: inline-block;
+    margin: 5px 0;
+    opacity: 0.6;
+  }
+
+  textarea {
+    resize: none;
+  }
+  .form-control {
+    max-width: 450;
+    display: inline-block;
+  }
+
+  .upload {
+    color: #0055FB;
+    padding: 0;
+    margin-bottom: 20px;
+    z-index: 11;
+  }
+  
+  .input-wrapper {
+    width: 50%;
+  }
+
+  .error {
+    color: #FF6666;
+  }
+
+  .back {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: -50px;
+  }
+
+  .message {
+    margin-bottom: 5px;
+  }
+}
