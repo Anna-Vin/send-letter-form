@@ -140,6 +140,15 @@ const Form = ({ files, sendLetter, }) => {
     });
   };
 
+  const validateLetterSize = (files) => {
+    const totalSize = files.reduce((a, b) => a += b.size, 0);
+    if (totalSize >  20971520) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   const errorClass = error => {
     return error.length === 0 ? "" : "is-invalid";
   };
@@ -282,9 +291,10 @@ const Form = ({ files, sendLetter, }) => {
         </>
       )}
 
-      <button className="btn btn-primary" disabled={!formValidation.formValid} onClick={(e) => sendLetterHandler(e)}>
+      <button className="btn btn-primary" disabled={!formValidation.formValid || !validateLetterSize(files)} onClick={(e) => sendLetterHandler(e)}>
         Отправить
       </button>
+      {validateLetterSize(files) || <p className="size-error">Letter size not permitted. Please, remove 1 or more files</p>}
     </form>
   </>
   );

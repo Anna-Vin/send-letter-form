@@ -38,6 +38,14 @@ const DropZone = ({ setDropOpen, addFile, setErrorMessage }) => {
     }
   };
 
+  // const fileSize = size => {
+  //   if (size === 0) return "0 Bytes";
+  //   const k = 1024;
+  //   const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+  //   const i = Math.floor(Math.log(size) / Math.log(k));
+  //   return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+  // };
+
   //Validate and check file sizes
   const handleFiles = files => {
     const selectedFilesArray = selectedFiles;
@@ -52,7 +60,7 @@ const DropZone = ({ setDropOpen, addFile, setErrorMessage }) => {
         // add to the same array so we can display the name of the file
         selectedFilesArray.push(files[i]);
         // set error message
-        setErrorMessage("File type not permitted");
+        setErrorMessage("File type/size not permitted");
       }
     }
 
@@ -72,29 +80,11 @@ const DropZone = ({ setDropOpen, addFile, setErrorMessage }) => {
       "application/doc",
       "application/zip",
     ];
-    if (validTypes.indexOf(file.type) === -1) {
+    if (validTypes.indexOf(file.type) === -1 || file.size > 5242880)  {
       return false;
     }
     return true;
   };
-
-  // const fileSize = size => {
-  //   if (size === 0) return "0 Bytes";
-  //   const k = 1024;
-  //   const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-  //   const i = Math.floor(Math.log(size) / Math.log(k));
-  //   return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-  // };
-
-  // const fileType = fileName => {
-  //   return (
-  //     fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length) ||
-  //     fileName
-  //   );
-  // };
-
-
-
 
 
   return (
