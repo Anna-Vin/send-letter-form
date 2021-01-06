@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { deleteFile } from "./../../../actions/form.actions";
-
 import "./Dropzone.scss";
-
-
 
 const mapStateToProps = store => {
   return {
@@ -14,13 +11,13 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteFile: fileName => dispatch(deleteFile(fileName))
-  }
-}
-
-
+    deleteFile: fileName => dispatch(deleteFile(fileName)),
+  };
+};
 
 const FilePreview = ({ files, errorMessage, deleteFile }) => {
+  const modalImageRef = useRef();
+  const modalRef = useRef();
 
   const cropFileName = name => {
     if (name.length > 40) {
@@ -31,25 +28,48 @@ const FilePreview = ({ files, errorMessage, deleteFile }) => {
     return name;
   };
 
-  
+  const openImageModal = file => {
+    const reader = new FileReader();
+    modalRef.current.style.display = "block";
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {
+      modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
+    };
+  };
 
+  const closeModal = () => {
+    modalRef.current.style.display = "none";
+    modalImageRef.current.style.backgroundImage = 'none';
+}
 
   return (
     <>
-        {files &&
-          files.map((data, i) => (
-
-            <div className="file-status-bar" key={i * Math.random()}>
-            <i className="fas fa-paperclip"></i>
-              <div className={!data.invalid ? `file-name`: `file-name invalid`}>{cropFileName(data.name)}</div>
+      {files &&
+        files.map((data, i) => (
+          <div key={i + Math.random()}>
+            <div className="file-status-bar">
+              <i className="fas fa-paperclip"></i>
+              <div
+                className={!data.invalid ? `file-name` : `file-name invalid`}
+                onClick={() => openImageModal(data)}
+              >
+                {cropFileName(data.name)}
+              </div>
               {data.invalid && (
-                  <span className="file-error-message">({errorMessage})</span>
-                )}
+                <span className="file-error-message">({errorMessage})</span>
+              )}
 
-              <div className="file-remove" onClick={() => deleteFile(i)}><i className="fas fa-trash-alt"></i>Удалить</div>
+              <div className="file-remove" onClick={() => deleteFile(i)}>
+                <i className="fas fa-trash-alt"></i>Удалить
+              </div>
             </div>
-          ))}
-      
+            <div className="modal" ref={modalRef}>
+              <div className="overlay"></div>
+              <span className="close" onClick={() => closeModal()}>✖</span>
+              <div className="modal-image" ref={modalImageRef}></div>
+            </div>
+          </div>
+        ))}
     </>
   );
 };

@@ -6,6 +6,8 @@ import FilePreview from "./Dropzone/FilePreview";
 import { sendLetter } from "../../actions/form.actions";
 
 
+
+
 const mapStateToProps = store => {
   return {
     files: store.form.files,
@@ -147,7 +149,7 @@ const Form = ({ files, sendLetter, }) => {
     setDropOpen(!isDropOpen);
   };
 
-  return (
+  return (<>
     <form className="form">
       <h1>Отправлялка сообщений</h1>
       <div className="field-row form-group ">
@@ -284,6 +286,7 @@ const Form = ({ files, sendLetter, }) => {
         Отправить
       </button>
     </form>
+  </>
   );
 };
 
