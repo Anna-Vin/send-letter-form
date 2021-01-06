@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const Form = ({ files, sendLetter }) => {
+const Form = ({ files, sendLetter, }) => {
   const [isDropOpen, setDropOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState(""); //Message for invalid file type
   const [formInitialValue, setFormInitialValue] = useState({

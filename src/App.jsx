@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import Form from './components/Form/Form';
 import Messages from './components/Message/Messages';
-// import MessageOnSubmit from './components/Message/MessageOnSubmit';
+import FormWrapper from './components/Form/FormWrapper';
+
 
 
 
@@ -10,8 +10,7 @@ function App() {
   return (
     <div className="App container">
       <Header />
-      <Form />
-      {/* <MessageOnSubmit /> */}
+      <FormWrapper />
       <Messages/>
     </div>
   );

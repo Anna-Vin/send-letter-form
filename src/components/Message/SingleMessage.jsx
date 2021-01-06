@@ -48,8 +48,6 @@ const SingleMessage = ({ trackId, date, theme, getLetterInfo, status }) => {
     return theme;
   }
 
-  console.log(status);
-
   return (
     <ul className="message">
       <li>{date}</li>
