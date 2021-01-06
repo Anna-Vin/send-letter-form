@@ -20,10 +20,10 @@ const FilePreview = ({ files, errorMessage, deleteFile }) => {
   const modalRef = useRef();
 
   const cropFileName = name => {
-    if (name.length > 40) {
+    if (name.length > 20) {
       const nameWOFormat = name.split(".").slice(0, 1).join("");
       const format = name.split(".").slice(1).join("");
-      return nameWOFormat.split("").slice(0, 30).join("") + "..." + format;
+      return nameWOFormat.split("").slice(0, 15).join("") + "..." + format;
     }
     return name;
   };
@@ -46,8 +46,8 @@ const FilePreview = ({ files, errorMessage, deleteFile }) => {
     <>
       {files &&
         files.map((data, i) => (
-          <div key={i + Math.random()}>
-            <div className="file-status-bar">
+          <div key={i + Math.random()} className="file-status-bar">
+
               <i className="fas fa-paperclip"></i>
               <div
                 className={!data.invalid ? `file-name` : `file-name invalid`}
@@ -62,7 +62,7 @@ const FilePreview = ({ files, errorMessage, deleteFile }) => {
               <div className="file-remove" onClick={() => deleteFile(i)}>
                 <i className="fas fa-trash-alt"></i>Удалить
               </div>
-            </div>
+
             <div className="modal" ref={modalRef}>
               <div className="overlay"></div>
               <span className="close" onClick={() => closeModal()}>✖</span>

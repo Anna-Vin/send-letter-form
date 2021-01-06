@@ -1,3 +1,4 @@
+@import "./../../../scss/mixins.scss";
 
 .drop-container {
   display: flex;
@@ -36,13 +37,18 @@
 }
 
 .file-status-bar{
-  min-width: calc(50% - 5px);
+  width: 100%;
   position: relative;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 5px;
   display: flex;
+
+  @include screen(md) {
+    width: calc(50% - 5px);
+  }
+
 
   .fa-paperclip {
     color: #C4C4C4;
@@ -56,7 +62,6 @@
 
 
 .file-name {
-  max-width: calc(100% - 125px);
   display: inline-block;
   margin-left: 10px;
   color: black;
